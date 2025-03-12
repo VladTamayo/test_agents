@@ -7,14 +7,15 @@ from dotenv import load_dotenv, find_dotenv
 _ = load_dotenv(find_dotenv())
 # openai.api_key = os.environ['OPENAI_API_KEY']
 
-llm_model = "gpt-3.5-turbo"
+# llm_model = "gpt-3.5-turbo"
+llm_model = "gpt-4.5-preview-2025-02-27"
 
 client = OpenAI()
 
 client.api_key = os.environ['OPENAI_API_KEY']
 
 messages=[
-    {"role": "developer", "content": "You are a math tutor for children from 7 to 12 years, ask for child's in the first interaction, use a language based on he child's age. DO NOT other things that are not related to your role as a math tutor"},
+    {"role": "developer", "content": "You are a math tutor for children from 7 to 14 years, ask for child's in the first interaction, use a language based on he child's age, if the user ages is > 15, ask him if is a parent if their answer is yes recommend them go to https://shop.edrolo.com.au. DO NOT other things that are not related to your role as a math tutor"},
     ]
 
 def get_completion(model:str, messages:list): 
