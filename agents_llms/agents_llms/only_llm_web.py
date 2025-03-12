@@ -1,6 +1,6 @@
 import os
 from openai import OpenAI
-# import gradio
+import gradio as gr
 
 from dotenv import load_dotenv, find_dotenv
 
@@ -29,13 +29,23 @@ def get_completion(model:str, messages:list) -> str | None:
     messages.append({"role": "assistant", "content": llm_completion})
     return llm_completion
 
-print("Say Hi. If you want to stop type /bye")
+def get_chat_message(message, history):
+    messages.append({"role": "user", "content": message})
+    bot_message = get_completion(llm_model, messages)
+    return bot_message
 
-while True:
-    user_message = input("👨: ")
-    if user_message == "/bye":
-        break
-    else:
-        messages.append({"role": "user", "content": user_message})
-        bot_message = get_completion(llm_model, messages)
-        print("🤖: ", bot_message)
+test_chat = gr.ChatInterface(get_chat_message, type="messages", autofocus=False)
+
+if __name__ == "__main__":
+    test_chat.launch(share=True)
+
+# print("Say Hi. If you want to stop type /bye")
+#
+# while True:
+#     user_message = input("👨: ")
+#     if user_message == "/bye":
+#         break
+#     else:
+#         messages.append({"role": "user", "content": user_message})
+#         bot_message = get_completion(llm_model, messages)
+#         print("🤖: ", bot_message)
