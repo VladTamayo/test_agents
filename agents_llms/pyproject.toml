@@ -10,6 +10,7 @@ python = "^3.13"
 python-dotenv = "^1.0.1"
 gradio = "^5.20.1"
 openai = "^1.66.2"
+gtts = "^2.5.4"
 
 
 [build-system]
